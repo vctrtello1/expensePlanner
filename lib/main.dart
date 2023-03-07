@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 // ignore: prefer_const_constructors
 void main() => (runApp(MyApp()));
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Expense planner',
       home: MyHomePage(),
     );
   }
@@ -26,7 +27,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter App'),
+        title: const Text('Expense Planner'),
       ),
       // ignore: prefer_const_constructors
       body: Column(
@@ -54,17 +55,20 @@ class MyHomePage extends StatelessWidget {
                         border: Border.all(color: Colors.black, width: 2)),
                     padding: const EdgeInsets.all(10),
                     child: Text(
-                      tx.amount.toString(),
+                      '\$${tx.amount}',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(tx.title),
                       Text(
-                        tx.date.toString(),
-                      )
+                        tx.title,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                      Text(DateFormat('MM-dd-yyyy').format(tx.date))
                     ],
                   )
                 ],
