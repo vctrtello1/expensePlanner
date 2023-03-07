@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
       // ignore: prefer_const_constructors
       body: Column(
         // ignore: prefer_const_literals_to_create_immutables
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
@@ -41,6 +41,27 @@ class MyHomePage extends StatelessWidget {
             child: Card(
               elevation: 5,
               child: Text('Chart'),
+            ),
+          ),
+          // ignore: prefer_const_literals_to_create_immutables
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // ignore: prefer_const_literals_to_create_immutables
+                children: <Widget>[
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                  ),
+                  const ElevatedButton(
+                      onPressed: null, child: Text('Add transaction'))
+                ],
+              ),
             ),
           ),
           Column(
