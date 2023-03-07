@@ -52,12 +52,19 @@ class MyHomePage extends StatelessWidget {
                         vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black, width: 2)),
-                    child: Text(tx.amount.toString()),
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      tx.amount.toString(),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                   ),
                   Column(
                     children: <Widget>[
                       Text(tx.title),
-                      Text(tx.date.toString())
+                      Text(
+                        tx.date.toString(),
+                      )
                     ],
                   )
                 ],
