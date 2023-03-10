@@ -1,8 +1,7 @@
 // ignore_for_file: avoid_print
 
+import './widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
-import './transaction.dart';
-import 'package:intl/intl.dart';
 
 // ignore: prefer_const_constructors
 void main() => (runApp(MyApp()));
@@ -20,12 +19,6 @@ class MyApp extends StatelessWidget {
 
 // ignore: use_key_in_widget_constructors, must_be_immutable
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(id: 1, title: "Mouse", amount: 300, date: DateTime.now()),
-    Transaction(id: 2, title: "Food", amount: 700, date: DateTime.now()),
-    Transaction(id: 3, title: "Dinner", amount: 400, date: DateTime.now()),
-  ];
-
   final titleController = TextEditingController();
   final amountController = TextEditingController();
   @override
@@ -75,38 +68,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-              children: transactions.map((tx) {
-            return Card(
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 15),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 2)),
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      '\$${tx.amount}',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        tx.title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
-                      ),
-                      Text(DateFormat('MM-dd-yyyy').format(tx.date))
-                    ],
-                  )
-                ],
-              ),
-            );
-          }).toList())
+          const TransactionList()
         ],
       ),
     );
