@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import './transaction.dart';
 import 'package:intl/intl.dart';
@@ -16,13 +18,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// ignore: use_key_in_widget_constructors
+// ignore: use_key_in_widget_constructors, must_be_immutable
 class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
     Transaction(id: 1, title: "Mouse", amount: 300, date: DateTime.now()),
     Transaction(id: 2, title: "Food", amount: 700, date: DateTime.now()),
     Transaction(id: 3, title: "Dinner", amount: 400, date: DateTime.now()),
   ];
+
+  late String titleInput;
+  late String amountInput;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +57,23 @@ class MyHomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
+                  TextField(
+                      decoration: const InputDecoration(labelText: 'Title'),
+                      onChanged: (value) {
+                        titleInput = value;
+                      }),
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Amount'),
+                    onChanged: (value) {
+                      amountInput = value;
+                    },
                   ),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
-                  ),
-                  const ElevatedButton(
-                      onPressed: null, child: Text('Add transaction'))
+                  ElevatedButton(
+                      onPressed: () {
+                        print(titleInput);
+                        print(amountInput);
+                      },
+                      child: const Text('Add transaction'))
                 ],
               ),
             ),
