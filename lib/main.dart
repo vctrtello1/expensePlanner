@@ -26,8 +26,8 @@ class MyHomePage extends StatelessWidget {
     Transaction(id: 3, title: "Dinner", amount: 400, date: DateTime.now()),
   ];
 
-  late String titleInput;
-  late String amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,20 +58,17 @@ class MyHomePage extends StatelessWidget {
                 // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
                   TextField(
-                      decoration: const InputDecoration(labelText: 'Title'),
-                      onChanged: (value) {
-                        titleInput = value;
-                      }),
+                    decoration: const InputDecoration(labelText: 'Title'),
+                    controller: titleController,
+                  ),
                   TextField(
                     decoration: const InputDecoration(labelText: 'Amount'),
-                    onChanged: (value) {
-                      amountInput = value;
-                    },
+                    controller: amountController,
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        print(titleInput);
-                        print(amountInput);
+                        print(titleController.text);
+                        print(amountController.text);
                       },
                       child: const Text('Add transaction'))
                 ],
