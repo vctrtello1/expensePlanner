@@ -1,5 +1,7 @@
-import 'package:expense_planner/widgets/user_transaction.dart';
+import './widgets/new_transaction.dart';
+import './widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
+import '../models/transaction.dart';
 
 // ignore: prefer_const_constructors
 void main() => (runApp(MyApp()));
@@ -16,12 +18,45 @@ class MyApp extends StatelessWidget {
 }
 
 // ignore: use_key_in_widget_constructors, must_be_immutable
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _userTransaction = [
+    Transaction(id: 1, title: "Mouse", amount: 300, date: DateTime.now()),
+    Transaction(id: 2, title: "Food", amount: 700, date: DateTime.now()),
+    Transaction(id: 3, title: "Dinner", amount: 400, date: DateTime.now()),
+  ];
+
+  void _addNewTransaction(String title, double amount) {
+    final newTx =
+        Transaction(title: title, amount: amount, date: DateTime.now(), id: 1);
+
+    setState(() {
+      _userTransaction.add(newTx);
+    });
+  }
+
+  void _startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return NewTransaction(_addNewTransaction);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Planner'),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () => _startAddNewTransaction(context),
+              icon: const Icon(Icons.add))
+        ],
       ),
       // ignore: prefer_const_constructors
       body: Column(
@@ -37,7 +72,7 @@ class MyHomePage extends StatelessWidget {
               child: Text('Chart'),
             ),
           ),
-          UserTransactions()
+          TransactionList(_userTransaction)
         ],
       ),
     );
