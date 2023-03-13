@@ -24,23 +24,21 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Expense Planner'),
       ),
       // ignore: prefer_const_constructors
-      body: SingleChildScrollView(
-        child: Column(
-          // ignore: prefer_const_literals_to_create_immutables
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          // ignore: prefer_const_literals_to_create_immutables
-          children: <Widget>[
-            const SizedBox(
-              width: double.infinity,
-              child: Card(
-                elevation: 5,
-                child: Text('Chart'),
-              ),
+      body: Column(
+        // ignore: prefer_const_literals_to_create_immutables
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        // ignore: prefer_const_literals_to_create_immutables
+        children: <Widget>[
+          const SizedBox(
+            width: double.infinity,
+            child: Card(
+              elevation: 5,
+              child: Text('Chart'),
             ),
-            UserTransactions()
-          ],
-        ),
+          ),
+          UserTransactions()
+        ],
       ),
     );
   }
