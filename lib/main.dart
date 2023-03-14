@@ -75,7 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         // ignore: prefer_const_literals_to_create_immutables
-        children: <Widget>[Chart(), TransactionList(_userTransaction)],
+        children: <Widget>[
+          Chart(_recentTransactions),
+          TransactionList(_userTransaction)
+        ],
       ),
     );
   }
