@@ -16,7 +16,17 @@ class TransactionList extends StatelessWidget {
         child: transactions.isEmpty
             ? Column(
                 children: <Widget>[
-                  const Text('No transactions added yet'),
+                  Container(
+                    margin: const EdgeInsets.all(10),
+                    child: const Text(
+                      'No transactions added yet!',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   SizedBox(
                       height: 200,
                       child: Image.asset(

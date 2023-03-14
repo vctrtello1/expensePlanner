@@ -2,6 +2,7 @@ import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
+import './widgets/chart.dart';
 
 // ignore: prefer_const_constructors
 void main() => (runApp(MyApp()));
@@ -26,6 +27,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransaction = [];
+
+  List<Transaction> get _recentTransactions {
+    return _userTransaction.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(
+        const Duration(days: 7),
+      ));
+    }).toList();
+  }
 
   void _addNewTransaction(String title, double amount) {
     final newTx =
@@ -63,20 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // ignore: prefer_const_constructors
       body: Column(
-        // ignore: prefer_const_literals_to_create_immutables
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         // ignore: prefer_const_literals_to_create_immutables
-        children: <Widget>[
-          const SizedBox(
-            width: double.infinity,
-            child: Card(
-              elevation: 5,
-              child: Text('Chart'),
-            ),
-          ),
-          TransactionList(_userTransaction)
-        ],
+        children: <Widget>[Chart(), TransactionList(_userTransaction)],
       ),
     );
   }
